@@ -83,6 +83,14 @@ This class know all information of the one player in time real.
 This class is used like format for sent to client response when ask for the task.
 
 ## Test
+if you want run of test use this command:
+```
+mvn test
+```
+Test of the class MatchAmongUs
+![img.png](Imagines/imgg.png)
+Test of the class Player
+![img_1.png](Imagines/imgg_1.png)
 
 
 
