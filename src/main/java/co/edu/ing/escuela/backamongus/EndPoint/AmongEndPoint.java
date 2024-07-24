@@ -50,9 +50,9 @@ public class AmongEndPoint {
     public void send(String msg) {
         try {
             for (Session session : queue) {
-                if (!session.equals(this.ownSession)) {
+                //if (!session.equals(this.ownSession)) {
                     session.getBasicRemote().sendText(msg);
-                }
+                //}
                 logger.log(Level.INFO, "Sent: {0}", msg);
             }
             System.out.println("Sent to all players: " + msg);

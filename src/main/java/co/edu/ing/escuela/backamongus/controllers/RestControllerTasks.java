@@ -21,4 +21,15 @@ public class RestControllerTasks {
         boolean exists = playerService.playerExists(idPlayer);
         return ResponseEntity.ok(exists);
     }
+    @GetMapping("/{idPlayer}/tasks/{taskKey}")
+    public ResponseEntity<Boolean> getTaskStatus(@PathVariable String idPlayer, @PathVariable Integer taskKey) {
+        Boolean taskStatus = playerService.getTaskStatus(idPlayer, taskKey);
+
+        if (taskStatus != null) {
+            playerService.updateTask(idPlayer,taskKey,true);
+            return ResponseEntity.ok(taskStatus);
+        } else {
+            return ResponseEntity.notFound().build(); // Devuelve 404 si no se encuentra la tarea
+        }
+    }
 }

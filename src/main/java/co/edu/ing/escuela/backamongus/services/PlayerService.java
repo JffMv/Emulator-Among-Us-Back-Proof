@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PlayerService {
@@ -65,5 +66,37 @@ public class PlayerService {
     public boolean playerExists(String idPlayer) {
         Query query = new Query(Criteria.where("idPlayer").is(idPlayer));
         return mongoTemplate.exists(query, Player.class);
+    }
+
+
+
+    // Consultar una tarea específica por jugador y clave
+    public Boolean getTaskStatus(String idPlayer, Integer taskKey) {
+        Query query = new Query(Criteria.where("idPlayer").is(idPlayer));
+        Player player = mongoTemplate.findOne(query, Player.class);
+
+        if (player != null && player.getTasks() != null) {
+            return player.getTasks().get(taskKey);
+        }
+        return null; // o lanza una excepción si prefieres
+    }
+
+    // Consultar todas las tareas por jugador
+    public Map<Integer, Boolean> getAllTasks(String idPlayer) {
+        Query query = new Query(Criteria.where("idPlayer").is(idPlayer));
+        Player player = mongoTemplate.findOne(query, Player.class);
+
+        if (player != null) {
+            return player.getTasks();
+        }
+        return null; // o lanza una excepción si prefieres
+    }
+
+    // Actualizar una tarea específica por jugador y clave
+    public Player updateTask(String idPlayer, Integer taskKey, Boolean newValue) {
+        Query query = new Query(Criteria.where("idPlayer").is(idPlayer));
+        Update update = new Update().set("tasks." + taskKey, newValue);
+        mongoTemplate.updateFirst(query, update, Player.class);
+        return getPlayerById(idPlayer);
     }
 }
