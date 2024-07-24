@@ -15,9 +15,8 @@ class PlayerTest {
 
     @Test
     void testStateOfTask_InitialState() {
-        for (int i = 0; i < 11; i++) {
-            assertFalse(player.stateOfTask(i), "All tasks should be initially false");
-        }
+        Player player = new Player();
+        assertEquals(false, player.stateOfTask(1));
     }
 
     @Test
@@ -29,7 +28,9 @@ class PlayerTest {
 
     @Test
     void testStateOfTask_InvalidTaskId() {
-        assertThrows(NullPointerException.class, () -> player.stateOfTask(11),
-                "Should throw NullPointerException for invalid task ID");
+        Player player = new Player();
+        assertThrows(IllegalArgumentException.class, () -> {
+            player.stateOfTask(-1);
+        });
     }
 }

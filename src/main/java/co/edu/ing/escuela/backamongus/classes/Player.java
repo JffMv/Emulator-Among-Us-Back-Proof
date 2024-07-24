@@ -46,8 +46,12 @@ public class Player {
             tasks.put(i, false);
         }
     }
-    public boolean stateOfTask(Integer idTask){
-        return this.tasks.get(idTask);
+    public boolean stateOfTask(Integer taskId) {
+        Boolean taskStatus = tasks.get(taskId);
+        if (taskStatus == null) {
+            throw new IllegalArgumentException("Task ID not found");
+        }
+        return taskStatus;
     }
     public void updateTaks(Integer key){
         this.tasks.put(key, true);
