@@ -58,7 +58,7 @@ For generate documentation update the pom.xml add and later use "mvn package":
 
 
 ## Architecture
-![img.png](Imagines/img.png)
+![img_1.png](Imagines/img_1.png)
 
 ### AmongEndPoint:
 This is the component that keep the connection, because is here where is the websocket.
@@ -82,7 +82,7 @@ This class know all information of the one player in time real.
 ### class - TaskResponse:
 This class is used like format for sent to client response when ask for the task.
 
-
+## Test
 
 
 
