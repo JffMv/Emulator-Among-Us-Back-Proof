@@ -51,6 +51,11 @@ public class PlayerService {
         Query query = new Query(Criteria.where("idPlayer").is(idPlayer));
         mongoTemplate.remove(query, Player.class);
     }
+    // Borrar un jugador por su ID session
+    public void deletePlayerSession(String idSession) {
+        Query query = new Query(Criteria.where("idSession").is(idSession));
+        mongoTemplate.remove(query, Player.class);
+    }
 
     // Método adicional: Buscar jugadores por sesión
     public List<Player> getPlayersBySession(String idSession) {
